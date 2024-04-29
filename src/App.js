@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import axios from "axios";
+import axios  from "axios";
 import People from "./assets/Consulting_Isometric 1.svg";
 import Arrow from "./assets/Arrow.svg";
 import Trash from "./assets/18297 4.svg";
