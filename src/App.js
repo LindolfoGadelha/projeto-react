@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+
+import React, { useState, useRef, useEffect } from "react";
 import axios  from "axios";
 import People from "./assets/Consulting_Isometric 1.svg";
 import Arrow from "./assets/Arrow.svg";
@@ -13,21 +14,37 @@ import {
   Button,
   User,
 } from "./styles";
+
 function App() {
   const [users, setUsers] = useState([]);
   const inputName = useRef();
   const inputAge = useRef();
 
   async function addNewUser() {
-    const { data: newUser } = await axios.post("http://localhost:3001/users", {
-      name: inputName.current.value,
-      age: inputName.current.value,
-    });
+   const { data: newUser } = await axios.post("http://localhost:3001/users", {
+     name: inputName.current.value,
+     age: inputAge.current.value,
+   });
 
-    console.log(newUser)
+   setUsers([...users, newUser]);
 
-    setUsers([...users, newUser]);
-  }
+  }  
+    
+  
+
+  useEffect(() => {
+    async function fetchUsers() {
+      const {data: newUsers} = await axios.get("http://localhost:3001/users");
+    
+      setUsers(newUsers);
+
+
+    }
+    fetchUsers() 
+    
+  },[])
+
+
   function deleteUser(userId) {
     const newUsers = users.filter((user) => user.id !== userId);
     setUsers(newUsers);
