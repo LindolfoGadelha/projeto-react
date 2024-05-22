@@ -1,34 +1,26 @@
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import {useHistory} from "react-router-dom"
 import axios  from "axios";
-import People from "./assets/Consulting_Isometric 1.svg";
-import Arrow from "./assets/Arrow.svg";
-import Trash from "./assets/18297 4.svg";
+import Avatar from "../../assets/avatar.svg";
+import Arrow from "../../assets/Arrow.svg";
+import Trash from "../../assets/18297 4.svg";
 import {
   Conteiner,
   H1,
   Image,
   ConteinerItens,
-  InputLabel,
-  Input,
+  
   Button,
   User,
 } from "./styles";
 
 function App() {
   const [users, setUsers] = useState([]);
-  const inputName = useRef();
-  const inputAge = useRef();
+  const history = useHistory()
+  
 
-  async function addNewUser() {
-   const { data: newUser } = await axios.post("http://localhost:3001/users", {
-     name: inputName.current.value,
-     age: inputAge.current.value,
-   });
-
-   setUsers([...users, newUser]);
-
-  }  
+ 
     
   
 
@@ -45,26 +37,22 @@ function App() {
   },[])
 
 
-  function deleteUser(userId) {
+  async function deleteUser(userId) {
+    await axios.delete(`http://localhost:3001/users/${userId}`);
     const newUsers = users.filter((user) => user.id !== userId);
     setUsers(newUsers);
   }
 
+  function goBackPage(){
+    history.push('/')
+  }
+
   return (
     <Conteiner>
-      <Image alt="logo-imagem" src={People} />
+      <Image alt="logo-imagem" src={Avatar} />
       <ConteinerItens>
-        <H1>Olá</H1>
+        <H1>Usuarios</H1>
 
-        <InputLabel>Nome</InputLabel>
-        <Input ref={inputName} placeholder="Nome" />
-
-        <InputLabel>Idade</InputLabel>
-        <Input ref={inputAge} placeholder="Idade" />
-
-        <Button onClick={addNewUser}>
-          Cadastrar <img alt="seta" src={Arrow} />
-        </Button>
         <ul>
           {users.map((user) => (
             <User key={user.id}>
@@ -75,6 +63,14 @@ function App() {
             </User>
           ))}
         </ul>
+
+        
+       
+
+        <Button onClick={goBackPage} >
+        <img alt="seta" src={Arrow} />  Voltar 
+        </Button>
+
       </ConteinerItens>
     </Conteiner>
   );

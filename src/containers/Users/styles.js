@@ -1,5 +1,9 @@
 import styled from "styled-components";
-import background from "./assets/bg image copy.svg";
+
+
+import background from "../../assets/background.svg";
+
+
 
 export const Conteiner = styled.div`
   background: url("${background}");
@@ -9,6 +13,8 @@ export const Conteiner = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  height: 100%;
+  min-height: 100vh;
  
 `;
 
@@ -23,53 +29,24 @@ export const ConteinerItens = styled.div`
     rgba(255, 255, 255, 0.15) 100%
   );
   border-radius: 61px 61px 0px 0px;
+  backdrop-filter: blur(45px);
   padding: 50px 36px;
   display: flex;
   flex-direction: column;
 
-  height: 100vh;
+  height: 100%;
+  min-height: calc(100vh -170px);
 `;
 
-export const H1 = styled.h1`
-  font-style: normal;
-  font-weight: bold;
-  font-size: 34px;
-  line-height: 40px;
-  text-align: center;
-  color: aliceblue;
-  margin-bottom: 80px;
-`;
-export const InputLabel = styled.p`
-  letter-spacing: -0.408px;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 22px;
-  color: aliceblue;
-  margin-left: 24px;
-`;
-export const Input = styled.input`
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 14px;
-  border: none;
-  width: 342px;
-  height: 48px;
-  outline: none;
-  padding-left: 26px;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 26px;
-  line-height: 28px;
-  margin-bottom: 25px;
 
-  color: aliceblue;
-`;
+
+
 export const Button = styled.button`
   width: 342px;
   height: 74px;
-  background: rgba(0, 0, 0, 0.9);
-  border: none;
+  margin-top: 120px;
+  background: transparent;
+  border: 1px solid #ffffff;
   color: aliceblue;
   font-size: 22px;
   font-weight: bold;
@@ -82,6 +59,7 @@ export const Button = styled.button`
   align-items: center;
   justify-content: center;
   gap: 20px;
+  
   &:hover {
     opacity: 0.8;
     background-color: aliceblue;
@@ -89,6 +67,9 @@ export const Button = styled.button`
   }
   &:active {
     opacity: 0.5;
+  }
+  img{
+    transform: rotateY(180deg);
   }
 `;
 export const User = styled.li`
